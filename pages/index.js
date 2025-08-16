@@ -32,10 +32,28 @@ export default function Home() {
     <main style={{ padding: 24, fontFamily: 'system-ui' }}>
       <h1>Forkbeards Badges</h1>
       <p>{status}</p>
+
       {rows.length > 0 && (
-        <ul>
+        <ul style={{ listStyle: 'none', padding: 0, marginTop: 12 }}>
           {rows.map((r) => (
-            <li key={r.id}>{JSON.stringify(r)}</li>
+            <li
+              key={r.id}
+              style={{
+                background: '#f3f3f3',
+                margin: '0.5rem 0',
+                padding: '0.75rem',
+                borderRadius: '8px',
+                lineHeight: 1.4
+              }}
+            >
+              <strong>{r.label}</strong>
+              <br />
+              <small>
+                {r.awarded_at
+                  ? new Date(r.awarded_at).toLocaleString('da-DK', { dateStyle: 'medium', timeStyle: 'short' })
+                  : 'Ingen dato'}
+              </small>
+            </li>
           ))}
         </ul>
       )}
